@@ -14,6 +14,7 @@ namespace Particles
     public partial class Form1 : Form
     {
         Emitter emitter = new TopEmitter();
+        Zone zone = new Zone();
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +29,10 @@ namespace Particles
                 // рисую на изображении сколько насчитал
                 g.Clear(Color.White);
                 emitter.Render(g);
+                zone.Render(g);
+                emitter.overlaps(zone, g);
+                
+                
             }
             picDisplay.Invalidate();
         }

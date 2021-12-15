@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Particles.classes
 {
-    class Emitter
+    class Emitter:PathTrecker
     {
         List<Particle> particles = new List<Particle>();
         public int MousePositionX;
@@ -67,6 +68,16 @@ namespace Particles.classes
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
             particle.Radius = 2 + Particle.rnd.Next(10);
+        }
+        public void overlaps(Zone obj,Graphics g)
+        {
+            foreach (var particle in particles)
+            {
+                if(obj.Overlaps(particle,g))
+                particle.changeColor(true);
+
+            }
+
         }
     }
 }

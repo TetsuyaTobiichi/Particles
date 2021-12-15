@@ -48,7 +48,9 @@
   <ItemGroup>
     <Compile Include="classes\Emitter.cs" />
     <Compile Include="classes\Particle.cs" />
+    <Compile Include="classes\PathTrecker.cs" />
     <Compile Include="classes\TopEmitter.cs" />
+    <Compile Include="classes\Zone.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

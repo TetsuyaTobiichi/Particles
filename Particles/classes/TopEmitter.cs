@@ -20,6 +20,7 @@ namespace Particles.classes
 
             particle.SpeedY = 1; // падаем вниз по умолчанию
             particle.SpeedX = Particle.rnd.Next(-2, 2); // разброс влево и вправа у частиц 
+            particle.changeColor(false);
         }
     }
 }

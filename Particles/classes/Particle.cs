@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Particles.classes
 {
-    class Particle
+    class Particle:PathTrecker
     {
         public int Radius; // радуис частицы
         public float X, Y; //координаты положения частицы в пространстве
@@ -15,6 +16,7 @@ namespace Particles.classes
         public float SpeedY; // скорость перемещения по оси Y
         public float Life; //время нахождения частицы на форме
         public static Random rnd = new Random();
+        Color color = Color.Black;
         public Particle()
         {
             var direction = (double)rnd.Next(360);
@@ -28,10 +30,27 @@ namespace Particles.classes
         {
             float k = Math.Min(1f, Life / 100);
             int alpha = (int)(k * 255);
-            var color = Color.FromArgb(alpha, Color.Black);
+            var color = Color.FromArgb(alpha, this.color);
             var b = new SolidBrush(color);
             g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
             b.Dispose();
+        }
+        public override GraphicsPath GetGraphicsPath()
+        {
+            var path = base.GetGraphicsPath();
+            path.AddEllipse(X - Radius, Y - Radius, Radius * 2, Radius * 2);
+            return path;
+        }
+        public  void changeColor(bool t=false)
+        {
+            if (t == true)
+            {
+                color = Color.Red;
+            }
+            else
+            {
+                color = Color.Black;
+            }
         }
 
     }
