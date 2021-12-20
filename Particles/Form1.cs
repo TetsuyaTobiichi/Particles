@@ -14,7 +14,8 @@ namespace Particles
     public partial class Form1 : Form
     {
         Emitter emitter = new TopEmitter();
-        Zone zone = new Zone();
+        Teleport zone = new Teleport(Color.Red);
+        Zone colors = new Zone(Color.Blue);
         public Form1()
         {
             InitializeComponent();
@@ -26,20 +27,45 @@ namespace Particles
             emitter.UpdateState();
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                // рисую на изображении сколько насчитал
+                // рисую на изображении
                 g.Clear(Color.White);
                 emitter.Render(g);
                 zone.Render(g);
+                colors.Render(g);
                 emitter.overlaps(zone, g);
-                
-                
+                emitter.overlaps(colors, g);
             }
             picDisplay.Invalidate();
         }
-        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        //private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        //{
+          //  emitter.MousePositionX = e.X;
+            //emitter.MousePositionY = e.Y;
+           //
+        //}
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            emitter.MousePositionX = e.X;
-            emitter.MousePositionY = e.Y;
+            colors.X = trackBar1.Value;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            zone.changeColor((rnd.Next() % 4)+1);
+            colors.changeColor((rnd.Next() % 4) + 1);
+        }
+
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
+        {
+            zone.Xi = e.X;
+            zone.Yi = e.Y;
+        }
+
+        private void picDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            zone.Xo = e.X;
+            zone.Yo = e.Y;
         }
     }
 }

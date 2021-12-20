@@ -69,15 +69,31 @@ namespace Particles.classes
 
             particle.Radius = 2 + Particle.rnd.Next(10);
         }
-        public void overlaps(Zone obj,Graphics g)
+        public void overlaps(Teleport obj,Graphics g)
         {
             foreach (var particle in particles)
             {
-                if(obj.Overlaps(particle,g))
-                particle.changeColor(true);
+                if (obj.Overlaps(particle, g))
+                {
+                    particle.changeColor(obj.paint, true);
+                    particle.X = obj.Xo;
+                    particle.Y = obj.Yo;
+                }
 
             }
 
         }
+        public void overlaps(Zone obj, Graphics g)
+        {
+            foreach (var particle in particles)
+            {
+                if (obj.Overlaps(particle, g))
+                {
+                    particle.changeColor(obj.paint, true);
+                }
+            }
+        }
+        
+        
     }
 }

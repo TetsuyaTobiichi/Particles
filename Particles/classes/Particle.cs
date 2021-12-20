@@ -41,15 +41,15 @@ namespace Particles.classes
             path.AddEllipse(X - Radius, Y - Radius, Radius * 2, Radius * 2);
             return path;
         }
-        public  void changeColor(bool t=false)
+        public  void changeColor(Color color, bool t=false)
         {
             if (t == true)
             {
-                color = Color.Red;
+                this.color = color;
             }
             else
             {
-                color = Color.Black;
+                this.color = Color.Black;
             }
         }
 

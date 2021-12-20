@@ -10,7 +10,6 @@ namespace Particles.classes
 {
     class PathTrecker
     {
-        float X, Y;
         public virtual GraphicsPath GetGraphicsPath()
         {
             return new GraphicsPath();
