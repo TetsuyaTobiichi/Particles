@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Particles.classes
 {
-    class Emitter:PathTrecker
+    class Emitter : PathTrecker
     {
         List<Particle> particles = new List<Particle>();
         public int MousePositionX;
         public int MousePositionY;
         public float GravitationX = 0;
-        public float GravitationY = 1; 
-        public int ParticlesCount = 500;
+        public float GravitationY = 1;
+        public int ParticlesCount = 1000;
         public void Render(Graphics g)
         {
             foreach (var particle in particles)
@@ -69,13 +69,13 @@ namespace Particles.classes
 
             particle.Radius = 2 + Particle.rnd.Next(10);
         }
-        public void overlaps(Teleport obj,Graphics g)
+        public void overlaps(Teleport obj, Graphics g)
         {
             foreach (var particle in particles)
             {
                 if (obj.Overlaps(particle, g))
                 {
-                    particle.changeColor(obj.paint, true);
+                    particle.changeColor(obj.paint);
                     particle.X = obj.Xo;
                     particle.Y = obj.Yo;
                 }
@@ -89,7 +89,7 @@ namespace Particles.classes
             {
                 if (obj.Overlaps(particle, g))
                 {
-                    particle.changeColor(obj.paint, true);
+                    particle.changeColor(obj.paint);
                 }
             }
         }
@@ -100,13 +100,14 @@ namespace Particles.classes
             {
                 if (obj.Overlaps(particle, g))
                 {
-                    particle.changeColor(obj.paint, true);
+                    particle.changeColor(obj.paint);
                     obj.countParticles++;
                 }
+                else
+                    if (particle.color == obj.paint)
+                    particle.changeColor(Color.Black);
+
             }
         }
-
-
-
     }
 }

@@ -49,7 +49,7 @@ namespace Particles
         }
         private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
         {
-            radar.size += e.Delta/10; 
+            radar.Radius += e.Delta/20; 
         }
         private void trackBar1_Scroll(object sender, EventArgs e)
         {

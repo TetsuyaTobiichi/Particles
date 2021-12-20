@@ -16,7 +16,7 @@ namespace Particles.classes
         public float SpeedY; // скорость перемещения по оси Y
         public float Life; //время нахождения частицы на форме
         public static Random rnd = new Random();
-        Color color = Color.Black;
+        public Color color = Color.Black;
         public Particle()
         {
             var direction = (double)rnd.Next(360);
@@ -41,16 +41,9 @@ namespace Particles.classes
             path.AddEllipse(X - Radius, Y - Radius, Radius * 2, Radius * 2);
             return path;
         }
-        public  void changeColor(Color color, bool t=false)
+        public  void changeColor(Color color)
         {
-            if (t == true)
-            {
                 this.color = color;
-            }
-            else
-            {
-                this.color = Color.Black;
-            }
         }
 
     }

@@ -17,11 +17,11 @@ namespace Particles.classes
 
            
             particle.X = Particle.rnd.Next(Width); // позиция X -- произвольная точка от 0 до Width
-            particle.Y = 0;   
+            particle.Y = 0;
 
-            particle.SpeedY = 1; // падаем вниз по умолчанию
-            particle.SpeedX = Particle.rnd.Next(-2, 2); // разброс влево и вправа у частиц 
-            particle.changeColor(Color.Black,false);
+            particle.SpeedY = 1; // гравитация
+            particle.SpeedX = Particle.rnd.Next(-2, 2); // разброс влево и вправо у частиц 
+            particle.changeColor(Color.Black);
         }
     }
 }
