@@ -13,13 +13,16 @@ namespace Particles
 {
     public partial class Form1 : Form
     {
+        Radar radar = new Radar(Color.Green);
         Emitter emitter = new TopEmitter();
         Teleport zone = new Teleport(Color.Red);
         Zone colors = new Zone(Color.Blue);
         public Form1()
         {
             InitializeComponent();
+            picDisplay.MouseWheel += picDisplay_MouseWheel;
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
+            
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -32,18 +35,22 @@ namespace Particles
                 emitter.Render(g);
                 zone.Render(g);
                 colors.Render(g);
+                radar.Render(g);
                 emitter.overlaps(zone, g);
                 emitter.overlaps(colors, g);
+                emitter.overlaps(radar, g);
             }
             picDisplay.Invalidate();
         }
-        //private void picDisplay_MouseMove(object sender, MouseEventArgs e)
-        //{
-          //  emitter.MousePositionX = e.X;
-            //emitter.MousePositionY = e.Y;
-           //
-        //}
-
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
+            radar.X = e.X;
+            radar.Y = e.Y;
+        }
+        private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            radar.size += e.Delta/10; 
+        }
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             colors.X = trackBar1.Value;
@@ -58,14 +65,15 @@ namespace Particles
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            zone.Xi = e.X;
-            zone.Yi = e.Y;
-        }
-
-        private void picDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            zone.Xo = e.X;
-            zone.Yo = e.Y;
+            if (e.Button != MouseButtons.Right)
+            {
+                zone.Xi = e.X;
+                zone.Yi = e.Y;
+            }
+            else {
+                zone.Xo = e.X;
+                zone.Yo = e.Y;
+            }
         }
     }
 }

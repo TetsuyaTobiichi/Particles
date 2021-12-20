@@ -11,6 +11,7 @@ namespace Particles.classes
     class Zone:PathTrecker
     {
         public float X = -150;
+        public float Y = 0;
         public Color paint = Color.Red;
         public Zone(Color color)
         {

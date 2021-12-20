@@ -49,6 +49,7 @@
     <Compile Include="classes\Emitter.cs" />
     <Compile Include="classes\Particle.cs" />
     <Compile Include="classes\PathTrecker.cs" />
+    <Compile Include="classes\Radar.cs" />
     <Compile Include="classes\Teleport.cs" />
     <Compile Include="classes\TopEmitter.cs" />
     <Compile Include="classes\Zone.cs" />

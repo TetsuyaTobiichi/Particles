@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace Particles.classes
 {
-    class Teleport:Zone
+    class Radar:Zone
     {
-        public float Xi = 0, Yi = 0;
-        public float Xo = 0, Yo = 0;
-        public Teleport(Color paint) : base(paint) { }
+        public int countParticles = 0;
+        public int size = 0;
+        public Radar(Color paint) : base(paint) { }
         public void Render(Graphics g)
         {
-            g.DrawEllipse(new Pen(Color.Blue,10), Xi-50, Yi-50, 100, 100);
-            g.DrawEllipse(new Pen(Color.Orange,10), Xo - 50, Yo - 50, 100, 100);
+            g.DrawEllipse(new Pen(paint), X, Y, size, size);
+            g.DrawString(countParticles.ToString(), new Font("Arial", 24, FontStyle.Regular), Brushes.Black, X, Y);
         }
         public override GraphicsPath GetGraphicsPath()
         {
             var path = new GraphicsPath();
-            path.AddEllipse(Xi-50, Yi-50, 100, 100);
+            path.AddEllipse(X, Y, size, size);
             return path;
         }
     }

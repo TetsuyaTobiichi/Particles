@@ -93,7 +93,20 @@ namespace Particles.classes
                 }
             }
         }
-        
-        
+        public void overlaps(Radar obj, Graphics g)
+        {
+            obj.countParticles = 0;
+            foreach (var particle in particles)
+            {
+                if (obj.Overlaps(particle, g))
+                {
+                    particle.changeColor(obj.paint, true);
+                    obj.countParticles++;
+                }
+            }
+        }
+
+
+
     }
 }
