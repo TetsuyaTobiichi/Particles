@@ -26,6 +26,7 @@ namespace Particles.classes
             Radius = 2 + rnd.Next(10);
             Life = 20 + rnd.Next(100);
         }
+        //появление частицы на форме 
         public void Render(Graphics g)
         {
             float k = Math.Min(1f, Life / 100);
@@ -35,12 +36,14 @@ namespace Particles.classes
             g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
             b.Dispose();
         }
+        // метод дающий значение положения и формы частицы, для просчета векторного взаимодействия объектов
         public override GraphicsPath GetGraphicsPath()
         {
             var path = base.GetGraphicsPath();
             path.AddEllipse(X - Radius, Y - Radius, Radius * 2, Radius * 2);
             return path;
         }
+        //изменение цвета
         public  void changeColor(Color color)
         {
                 this.color = color;

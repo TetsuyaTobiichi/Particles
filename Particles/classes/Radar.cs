@@ -13,11 +13,13 @@ namespace Particles.classes
         public int countParticles = 0;
         public int Radius = 0;
         public Radar(Color paint) : base(paint) { }
+        //отрисовка объектов на форме
         public void Render(Graphics g)
         {
             g.DrawEllipse(new Pen(paint), X-Radius, Y-Radius, Radius*2, Radius*2);
             g.DrawString(countParticles.ToString(), new Font("Arial", 24, FontStyle.Regular), Brushes.Black, X, Y);
         }
+        // метод дающий значение положения и формы объекта, для просчета векторного взаимодействия объектов
         public override GraphicsPath GetGraphicsPath()
         {
             var path = new GraphicsPath();
